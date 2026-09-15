@@ -249,6 +249,70 @@
             box-shadow: 0 2px 16px rgba(37,211,102,0.3);
         }
         .sticky-cta a svg { width: 18px; height: 18px; fill: #fff; }
+
+        /* Popup styles */
+        .popup-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 200;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        .popup-overlay.show { display: flex; }
+        .popup-box {
+            background: linear-gradient(135deg, #1a1040 0%, #0d1b3e 100%);
+            border: 1px solid rgba(37,211,102,0.3);
+            border-radius: 20px;
+            padding: 32px 28px;
+            max-width: 360px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 8px 40px rgba(37,211,102,0.2);
+            animation: popup-in 0.4s ease;
+        }
+        @keyframes popup-in {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .popup-emoji { font-size: 42px; margin-bottom: 10px; }
+        .popup-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #e2e8f0;
+            margin-bottom: 8px;
+        }
+        .popup-desc {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .popup-wa-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: #fff;
+            padding: 12px 32px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(37,211,102,0.3);
+            margin-bottom: 12px;
+        }
+        .popup-wa-btn svg { width: 20px; height: 20px; fill: #fff; }
+        .popup-close {
+            display: inline-block;
+            font-size: 13px;
+            color: #64748b;
+            cursor: pointer;
+            margin-top: 4px;
+            transition: color 0.2s;
+        }
+        .popup-close:hover { color: #94a3b8; }
     </style>
 </head>
 <body>
@@ -327,6 +391,26 @@
             Contact me on WhatsApp
         </a>
     </div>
+
+    <!-- 3秒弹窗 -->
+    <div class="popup-overlay" id="popup">
+        <div class="popup-box">
+            <div class="popup-emoji">🔔</div>
+            <div class="popup-title">Want to join our learning group?</div>
+            <div class="popup-desc">Click here to contact us and join for free!</div>
+            <a href="https://wa.me/15673964135?text=Hi%2C%20I%27m%20interested%20in%20the%20investment%20education%20group" class="popup-wa-btn">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c1.59-6.695 9.442-10.21 15.876-7.506 3.227 1.358 5.597 4.177 6.396 7.577.797 3.4-.136 6.98-2.52 9.498a9.868 9.868 0 01-7.502 3.322h.001zM12 0C5.373 0 0 5.373 0 12c0 2.095.545 4.12 1.587 5.912L0 24l6.335-1.652A11.93 11.93 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+                Contact Now
+            </a>
+            <div class="popup-close" onclick="document.getElementById('popup').classList.remove('show')">Maybe Later</div>
+        </div>
+    </div>
+
+    <script>
+        setTimeout(function(){
+            document.getElementById('popup').classList.add('show');
+        }, 3000);
+    </script>
 
 </body>
 </html>
